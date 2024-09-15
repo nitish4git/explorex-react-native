@@ -1,17 +1,11 @@
-import {
-  ImageBackground,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import React from "react";
+import {ImageBackground,Pressable,StyleSheet,Text,TextInput,TouchableOpacity,View,} from "react-native";
+import React, { useState } from "react";
 import { useRouter } from "expo-router";
 
 const Login = () => {
   const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <>
@@ -19,7 +13,7 @@ const Login = () => {
         <ImageBackground
           source={require("../../assets/images/towncity.jpeg")}
           style={styles.image}
-          imageStyle={{ borderRadius: 15}}
+          imageStyle={{ borderRadius: 15 }}
         />
       </View>
       <View style={styles.formContainer}>
@@ -27,6 +21,7 @@ const Login = () => {
           <TextInput
             placeholder="Enter email"
             style={{ fontSize: 12, fontFamily: "outfit" }}
+            onChangeText={(value) => setEmail(value)}
           />
         </View>
         <View style={styles.inputField}>
@@ -34,6 +29,7 @@ const Login = () => {
             placeholder="Enter password"
             secureTextEntry
             style={{ fontSize: 12, fontFamily: "outfit" }}
+            onChangeText={(value) => setPassword(value)}
           />
         </View>
         <TouchableOpacity style={styles.button}>
