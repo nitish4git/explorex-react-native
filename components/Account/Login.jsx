@@ -15,38 +15,6 @@ const Login = () => {
           style={styles.image}
           imageStyle={{ borderRadius: 15 }}
         />
-<<<<<<< HEAD
-        <Text
-          style={{
-            paddingTop: 30,
-            textAlign: "center",
-            fontSize: 55,
-            fontFamily: "outfit-bold",
-            color: "aliceblue",
-            textTransform: "uppercase",
-          }}
-        >
-          Welcome
-        </Text>
-      </View>
-      <View style={styles.formContainer}>
-        <View style={styles.inputField}>
-          <TextInput placeholder="Enter email" style={{ fontSize: 18, fontFamily: 'outfit' }} />
-        </View>
-        <View style={styles.inputField}>
-          <TextInput placeholder="Enter password" secureTextEntry style={{ fontSize: 18, fontFamily: 'outfit' }} />
-        </View>
-        <TouchableOpacity style={styles.button}
-
-        >
-          <Text style={{ color: 'aliceblue', textAlign: "center", fontFamily: 'outfit', fontSize: 25 }}>Login</Text>
-        </TouchableOpacity>
-        <Pressable style={{ textAlign: 'center', marginTop: 14 }} onPress={() => router.push('/auth/Signup')}>
-          <Text style={{ textAlign: 'center', marginTop: 10 }}> Don't have an account?</Text>
-        </Pressable>
-      </View>
-
-=======
       </View>
       <View style={styles.formContainer}>
         <View style={styles.inputField}>
@@ -86,7 +54,6 @@ const Login = () => {
           </Text>
         </Pressable>
       </View>
->>>>>>> origin/main
     </>
   );
 };
@@ -107,35 +74,16 @@ const styles = StyleSheet.create({
     color: "aliceblue",
   },
   formContainer: {
-<<<<<<< HEAD
-    backgroundColor: 'aliceblue',
-=======
     backgroundColor: "aliceblue",
->>>>>>> origin/main
     height: 460,
     marginTop: -140,
     marginHorizontal: 20,
     borderRadius: 30,
-<<<<<<< HEAD
-    shadowColor: 'black',
-=======
     shadowColor: "black",
->>>>>>> origin/main
     shadowOpacity: 1,
     elevation: 10,
   },
   inputField: {
-<<<<<<< HEAD
-    backgroundColor: '#dadce0',
-    marginVertical: 10,
-    marginHorizontal: 30,
-    marginTop: 50,
-    padding: 20,
-    borderRadius: 20,
-  },
-  button: {
-    backgroundColor: 'black',
-=======
     backgroundColor: "#dadce0",
     marginVertical: 10,
     marginHorizontal: 30,
@@ -145,7 +93,6 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "black",
->>>>>>> origin/main
     marginHorizontal: 50,
     padding: 10,
     borderRadius: 33,
