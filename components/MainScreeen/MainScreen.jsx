@@ -11,7 +11,7 @@ const MainScreen = () => {
           source={require("../../assets/images/Banner.jpeg")}
         />
       </View>
-      <View style={{ marginTop: -33 }}>
+      <View style={{ marginTop: -70 }}>
         <View style={styles.textContainer}>
           <Text style={styles.HeadingName}>ExploreX</Text>
           <Text
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   textContainer: {
     backgroundColor: "aliceblue",
     height: "100%",
-    borderRadius: 20,
+    borderRadius: 35,
   },
   HeadingName: {
     textAlign: "center",
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "black",
     marginHorizontal: 70,
-    marginTop: 100,
+    marginTop: 50,
     borderRadius: 30,
   },
 });
