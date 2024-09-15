@@ -7,7 +7,9 @@ import { useFonts } from 'expo-font';
 
 const layout = () => {
   useFonts({
-    "outfit-bold" : require('../assets/fonts/Outfit-Bold.ttf')
+    "outfit-bold" : require('../assets/fonts/Outfit-Bold.ttf'),
+    "outfit" : require('../assets/fonts/Outfit-Regular.ttf'),
+    "outfit-medium" : require('../assets/fonts/Outfit-Bold.ttf'),
   })
 
   return (

@@ -6,7 +6,8 @@ const Signin = () => {
   const navigation = useNavigation();
   useEffect(() => {
     navigation.setOptions({
-      headerTitle: " ",
+      headerShown:false,
+      
     });
   }, []);
 

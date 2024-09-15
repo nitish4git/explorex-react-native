@@ -20,6 +20,7 @@ const MainScreen = () => {
               paddingHorizontal: 30,
               marginTop: 20,
               fontSize: 22,
+              fontFamily:'outfit'
             }}
           >
             Your Journey, Our Expertise
@@ -31,6 +32,7 @@ const MainScreen = () => {
                 color: "aliceblue",
                 textAlign: "center",
                 fontSize: 22,
+                fontFamily:'outfit'
               }}
             >
               Get Started
