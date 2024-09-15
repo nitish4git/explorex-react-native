@@ -1,14 +1,22 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
+import Register from '../../components/Account/Signup'
+import { useNavigation } from 'expo-router';
 
 const Signup = () => {
+  const navigation = useNavigation();
+  useEffect(() =>{
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
   return (
     <View>
-      <Text>Signup</Text>
+      <Register />
     </View>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;
 
 const styles = StyleSheet.create({})

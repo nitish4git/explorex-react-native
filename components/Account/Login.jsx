@@ -26,26 +26,26 @@ const Login = () => {
             textTransform: "uppercase",
           }}
         >
-        Welcome
+          Welcome
         </Text>
       </View>
       <View style={styles.formContainer}>
         <View style={styles.inputField}>
-        <TextInput placeholder="Enter email" style={{fontSize: 18, fontFamily:'outfit'}}/>
+          <TextInput placeholder="Enter email" style={{ fontSize: 18, fontFamily: 'outfit' }} />
         </View>
         <View style={styles.inputField}>
-          <TextInput placeholder="Enter password" secureTextEntry  style={{fontSize: 18, fontFamily:'outfit'}}/>
+          <TextInput placeholder="Enter password" secureTextEntry style={{ fontSize: 18, fontFamily: 'outfit' }} />
         </View>
         <TouchableOpacity style={styles.button}
-       
+
         >
-        <Text style={{color:'aliceblue' , textAlign:"center" , fontFamily:'outfit' , fontSize: 25}}>Login</Text>
-      </TouchableOpacity>
-      <Pressable style={{textAlign:'center', marginTop: 14}}  onPress={()=>router.push('/auth/Signup')}>
-        <Text style={{textAlign:'center',marginTop:10}}> Don't have an account?</Text>
-      </Pressable>
+          <Text style={{ color: 'aliceblue', textAlign: "center", fontFamily: 'outfit', fontSize: 25 }}>Login</Text>
+        </TouchableOpacity>
+        <Pressable style={{ textAlign: 'center', marginTop: 14 }} onPress={() => router.push('/auth/Signup')}>
+          <Text style={{ textAlign: 'center', marginTop: 10 }}> Don't have an account?</Text>
+        </Pressable>
       </View>
-     
+
     </>
   );
 };
@@ -65,26 +65,26 @@ const styles = StyleSheet.create({
     paddingTop: 80,
     color: "aliceblue",
   },
-  formContainer:{
-    backgroundColor:'aliceblue',
+  formContainer: {
+    backgroundColor: 'aliceblue',
     height: 460,
     marginTop: -140,
     marginHorizontal: 20,
     borderRadius: 30,
-    shadowColor:'black',
+    shadowColor: 'black',
     shadowOpacity: 1,
     elevation: 10
   },
-  inputField:{
+  inputField: {
     backgroundColor: '#dadce0',
     marginVertical: 10,
     marginHorizontal: 30,
     marginTop: 50,
-    padding:20,
+    padding: 20,
     borderRadius: 20,
   },
-  button:{
-    backgroundColor:'black',
+  button: {
+    backgroundColor: 'black',
     marginHorizontal: 50,
     padding: 10,
     borderRadius: 33,
