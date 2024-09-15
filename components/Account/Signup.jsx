@@ -47,7 +47,7 @@ const Signup = () => {
         <TouchableOpacity style={styles.button}>
           <Text style={{ color: 'aliceblue', textAlign: 'center', fontFamily: 'outfit', fontSize: 25 }}>Sign Up</Text>
         </TouchableOpacity>
-        <Pressable style={{ textAlign: 'center', marginTop:10 }} onPress={() => router.push('/auth/Signup')}>
+        <Pressable style={{ textAlign: 'center', marginTop:10 }} onPress={() => router.push('/auth/Signin')}>
           <Text style={{ textAlign: 'center', marginTop: 10 }}>Already A Member?</Text>
         </Pressable>
 

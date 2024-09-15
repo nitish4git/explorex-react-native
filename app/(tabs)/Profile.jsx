@@ -1,15 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import MainScreen from '../components/MainScreeen/MainScreen.jsx'
 
-const index = () => {
+const Profile = () => {
   return (
     <View>
-      {/* <MainScreen/> */}
+      <Text>Profile</Text>
     </View>
   )
 }
 
-export default index
+export default Profile
 
 const styles = StyleSheet.create({})
