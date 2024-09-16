@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Mytrip = () => {
+const SearchPlace = () => {
   return (
     <View>
-      <Text>Mytrip</Text>
+      <Text>Search-place</Text>
     </View>
   )
 }
 
-export default Mytrip
+export default SearchPlace
 
 const styles = StyleSheet.create({})
