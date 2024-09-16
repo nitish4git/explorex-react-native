@@ -5,7 +5,7 @@ import MainScreen from '../components/MainScreeen/MainScreen.jsx'
 const index = () => {
   return (
     <View>
-      {/* <MainScreen/> */}
+      <MainScreen/>
     </View>
   )
 }

@@ -1,54 +1,53 @@
-import { Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import React, { useEffect } from 'react';
-import Feather from "@expo/vector-icons/Feather";
+import { ImageBackground, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from 'react';
 import { useRouter } from "expo-router";
 
 const Signup = () => {
   const router = useRouter();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone,setPhone]=useState("");
+  const [password, setPassword] = useState("");
   return (
     <>
       <View style={styles.topContainer}>
-        <Feather
-          name="check-circle"
-          size={24}
-          color="black"
-          style={styles.checkLogo}
+        <ImageBackground
+          source={require("../../assets/images/towncity2.jpg")}
+          style={styles.image}
+          imageStyle={{ borderRadius: 15 }}
         />
-        <Text
-          style={{
-            paddingTop: 10,
-            textAlign: "center",
-            fontSize: 55,
-            fontFamily: "outfit-bold",
-            color: "aliceblue",
-            textTransform: "uppercase",
-          }}
-        >
-          Register
-        </Text>
       </View>
+
       <View style={styles.formCantainer}>
         <View style={styles.inputField}>
-          <TextInput placeholder="Enter Full Name"
-            style={{ fontsize: 18, fontFamily: 'outfit' }} />
+          <TextInput placeholder="Enter Name"
+            style={{ fontsize: 12, fontFamily: 'outfit' }}
+            onChangeText={(value)=>setName(value)}/>
         </View>
+
         <View style={styles.inputField}>
           <TextInput placeholder="Enter Email"
-            style={{ fontsize: 18, fontFamily: 'outfit' }} />
+            style={{ fontsize: 12, fontFamily: 'outfit' }}
+            onChangeText={(value)=>setEmail(value)} />
         </View>
         <View style={styles.inputField}>
-          <TextInput placeholder="Enter Phone NUmber" secureTextEntry
-            style={{ fontsize: 18, fontFamily: 'outfit' }} />
+          <TextInput placeholder="Enter Phone Number" 
+            style={{ fontsize: 12, fontFamily: 'outfit' }}
+            onChangeText={(value)=>setPhone(value)} />
         </View>
         <View style={styles.inputField}>
           <TextInput placeholder=" Enter Password"
-            style={{ fontsize: 18, fontFamily: 'outfit' }} />
+          secureTextEntry
+            style={{ fontsize: 12, fontFamily: 'outfit'}}
+            onChangeText={(value)=>setPassword(value) } />
         </View>
+
         <TouchableOpacity style={styles.button}>
           <Text style={{ color: 'aliceblue', textAlign: 'center', fontFamily: 'outfit', fontSize: 25 }}>Sign Up</Text>
         </TouchableOpacity>
-        <Pressable style={{ textAlign: 'center', marginTop:10 }} onPress={() => router.push('/auth/Signin')}>
-          <Text style={{ textAlign: 'center', marginTop: 10 }}>Already A Member?</Text>
+
+        <Pressable style={{ textAlign: 'center', marginTop: 14 }} onPress={() => router.push('/auth/Signin')}>
+          <Text style={{ textAlign: 'center', marginTop: 10 }}>{" "}Already A Member?</Text>
         </Pressable>
 
       </View>
@@ -59,41 +58,35 @@ const Signup = () => {
 export default Signup
 
 const styles = StyleSheet.create({
-  topContainer: {
-    backgroundColor: "royalblue",
-    height: 500,
+  image: {
+    height: 450,
     borderBottomRightRadius: 30,
     borderBottomLeftRadius: 30,
   },
-  checkLogo: {
-    fontSize: 80,
-    textAlign: "center",
-    paddingTop: 60,
-    color: "aliceblue",
-  },
+
   formCantainer: {
     backgroundColor: 'aliceblue',
     height: 460,
-    marginTop:-220,
+    marginTop: -140,
     marginHorizontal: 20,
     borderRadius: 30,
     shadowColor: 'black',
     shadowOpacity: 1,
     elevation: 10
   },
-  inputField:{
-    backgroundColor:"#dadce0",
-    marginVertical:10,
-    marginHorizontal:30,
-    marginTop:30,
-    padding:20,
-    borderRadius:20,
+  inputField: {
+    backgroundColor: "#dadce0",
+    marginVertical: 10,
+    marginHorizontal: 30,
+    marginTop: 16,
+    padding: 10,
+    borderRadius: 10,
   },
-  button:{
-    backgroundColor:'black',
-    marginHorizontal:50,
-    padding:10,
-    borderRadius:33,
-    marginTop:40,
+  button: {
+    backgroundColor: 'black',
+    marginHorizontal: 50,
+    padding: 10,
+    borderRadius: 33,
+    marginTop: 20,
   }
 });
