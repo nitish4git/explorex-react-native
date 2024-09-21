@@ -1,15 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import MainScreen from '../components/MainScreeen/MainScreen.jsx'
 
-const index = () => {
+const OptionCard = () => {
   return (
     <View>
-      <MainScreen/>
+      <Text>OptionCard</Text>
     </View>
   )
 }
 
-export default index
+export default OptionCard
 
 const styles = StyleSheet.create({})

@@ -42,7 +42,8 @@ const Signup = () => {
             onChangeText={(value)=>setPassword(value) } />
         </View>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} 
+        onPress={() => router.push('/(tabs)/MyTrip')}>
           <Text style={{ color: 'aliceblue', textAlign: 'center', fontFamily: 'outfit', fontSize: 25 }}>Sign Up</Text>
         </TouchableOpacity>
 

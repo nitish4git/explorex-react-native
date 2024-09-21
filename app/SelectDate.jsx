@@ -1,15 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import MainScreen from '../components/MainScreeen/MainScreen.jsx'
 
-const index = () => {
+const SelectDate = () => {
   return (
     <View>
-      <MainScreen/>
+      <Text>SelectDate</Text>
     </View>
   )
 }
 
-export default index
+export default SelectDate
 
 const styles = StyleSheet.create({})
