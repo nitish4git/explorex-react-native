@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, ToastAndroid, View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { router, useNavigation } from "expo-router";
 import { BudgetCategory } from "../constants/BudgetCategory";
@@ -19,14 +19,16 @@ const Budget = () => {
 
   useEffect(() => {
     setTripData({...tripData,budget: selectedBudget});
-    console.log(tripData);
   }, [selectedBudget]);
 
-  // useEffect(() => {
-  //   setTripData({ ...tripData, traveler: traveler });
-  //   console.log(tripData);
-  // }, [traveler]);
-
+ 
+const onBudgetSelect = () =>{
+  if(!selectedBudget){
+    ToastAndroid.show("Please Select your budget",ToastAndroid.LONG)
+  }
+  console.log(tripData?.budget)
+  router.push('SelectDate')
+}
   return (
     <View style={{ flex: 1, backgroundColor: "aliceblue" }}>
       <View style={{ padding: 20, paddingTop: 100 }}>
@@ -55,7 +57,7 @@ const Budget = () => {
         )}
       />
       <TouchableOpacity style={{marginBottom:100 , backgroundColor:'black' , marginHorizontal: 50 , borderRadius:33}}
-      onPress={()=>router.push('/SelectDate')}>
+      onPress={onBudgetSelect}>
         <Text style={{textAlign:'center' , fontFamily:'outfit-bold' , fontSize: 16, padding:15 , color:'aliceblue'}}>Continue</Text>
       </TouchableOpacity>
     </View>

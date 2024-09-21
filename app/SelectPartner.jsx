@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, ToastAndroid, View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigation, useRouter } from "expo-router";
 import { TouchableOpacity } from "react-native";
@@ -19,8 +19,16 @@ const SelectPartner = () => {
   const { tripData, setTripData } = useContext(CreateTripContext);
   useEffect(() => {
     setTripData({ traveler: traveler });
-    console.log(tripData);
   }, [traveler]);
+
+  const onSelectTraveler = () => {
+    if (!traveler) {
+      ToastAndroid.show("Please Select Taveler", ToastAndroid.LONG);
+      return;
+    }
+    console.log(tripData?.traveler);
+    router.push("/Budget");
+  };
 
   return (
     <>
@@ -67,9 +75,25 @@ const SelectPartner = () => {
             </TouchableOpacity>
           );
         })}
-        <TouchableOpacity style={{backgroundColor:'black' , marginHorizontal:40 , marginTop: 30 , borderRadius:33}}
-        onPress={()=>router.push('/Budget')}>
-            <Text style={{color:'aliceblue' , textAlign:'center' , fontFamily:'outfit-medium' , padding:15}}>Continue</Text>
+        <TouchableOpacity
+          style={{
+            backgroundColor: "black",
+            marginHorizontal: 40,
+            marginTop: 30,
+            borderRadius: 33,
+          }}
+          onPress={onSelectTraveler}
+        >
+          <Text
+            style={{
+              color: "aliceblue",
+              textAlign: "center",
+              fontFamily: "outfit-medium",
+              padding: 15,
+            }}
+          >
+            Continue
+          </Text>
         </TouchableOpacity>
       </View>
     </>
