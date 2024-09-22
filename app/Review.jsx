@@ -1,13 +1,28 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { CreateTripContext } from '../context/CreateTripContext';
 import { TouchableOpacity } from 'react-native';
+import { useNavigation } from 'expo-router';
 
 const Review = () => {
     const {tripData , setTripData} = useContext(CreateTripContext)
+    const initialDate = tripData?.startDate;
+    const lastDate = tripData?.endDate;
+    const navigation = useNavigation();
+    useEffect(()=>{
+      navigation.setOptions({
+        headerShown:true,
+        headerTransparent: true,
+        headerTitle:' '
+      })
+    })
+    // console.log(initialDate.slice(0,3)+' '+initialDate.slice(10 , initialDate.length))
+    // console.log(lastDate.slice(0,3)+' '+lastDate.slice(10 , lastDate.lenght))
+
+
   return (
-   <View>
-    <View style={{paddingTop: 65 , paddingLeft: 15}}>
+   <View style={{backgroundColor:'aliceblue' , flex:1}}>
+    <View style={{paddingTop:75 , paddingLeft: 40}}>
       <Text style={{fontFamily:'outfit-bold',fontSize:35}}>Review your trip</Text>
     </View>
     <View>
@@ -18,8 +33,8 @@ const Review = () => {
         </View>
         <View style={{paddingLeft: 20}}>
 
-        <Text style={{fontFamily:'outfit-bold' , fontSize: 20}}>Destination</Text>
-        <Text style={{fontFamily:'outfit',fontSize:15}}>Thailand</Text>
+        <Text style={{fontFamily:'outfit-bold' ,color:'gray', fontSize: 17}}>Destination</Text>
+        <Text style={{fontFamily:'outfit-medium',fontSize:18}}>Thailand</Text>
         </View>
       </View>
       <View style={styles.cardContainer}>
@@ -28,8 +43,8 @@ const Review = () => {
         </View>
         <View style={{paddingLeft: 20}}>
 
-        <Text style={{fontFamily:'outfit-bold' , fontSize: 20}}>Traveler</Text>
-        <Text style={{fontFamily:'outfit',fontSize:15}}>{tripData.traveler}</Text>
+        <Text style={{fontFamily:'outfit-bold' ,color:'gray', fontSize: 17}}>Traveler</Text>
+        <Text style={{fontFamily:'outfit-medium',fontSize:18}}>{tripData.traveler}</Text>
         </View>
       </View>
       <View style={styles.cardContainer}>
@@ -38,9 +53,8 @@ const Review = () => {
         </View>
         <View style={{paddingLeft: 20}}>
 
-        <Text style={{fontFamily:'outfit-bold' , fontSize: 20}}>Selected Date</Text>
-        {/* <Text style={{fontFamily:'outfit',fontSize:15}}>{`${tripData.startDate} to ${tripData.endDate}`}</Text> */}
-        <Text>date</Text>
+        <Text style={{fontFamily:'outfit-bold' ,color:'gray', fontSize: 17}}>Selected Date</Text>
+        <Text style={{fontFamily:'outfit-medium',fontSize:18}}>{`${initialDate.slice(0,3)+' '+initialDate.slice(10 , initialDate.length)} to ${lastDate.slice(0,3)+' '+lastDate.slice(10 , lastDate.lenght)}`}</Text>
         </View>
       </View>
       <View style={styles.cardContainer}>
@@ -50,8 +64,8 @@ const Review = () => {
         </View>
         <View style={{paddingLeft: 20}}>
 
-        <Text style={{fontFamily:'outfit-bold' , fontSize: 20}}>Budget</Text>
-        <Text style={{fontFamily:'outfit',fontSize:15}}>{tripData.budget}</Text>
+        <Text style={{fontFamily:'outfit-bold' ,color:'gray', fontSize: 17}}>Budget</Text>
+        <Text style={{fontFamily:'outfit-medium',fontSize:18}}>{tripData.budget}</Text>
         </View>
       </View>
     </View>

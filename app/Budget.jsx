@@ -24,6 +24,7 @@ const Budget = () => {
   const onBudgetSelect = () => {
     if (!selectedBudget) {
       ToastAndroid.show("Please Select your budget", ToastAndroid.LONG);
+      return;
     }
     console.log(tripData?.budget);
     router.push("SelectDate");

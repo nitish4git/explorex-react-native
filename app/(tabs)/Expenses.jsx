@@ -1,12 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react';
-import { useNavigation } from 'expo-router';
-
+import ExpensesLanding from '../../components/Expenses/ExpensesLanding';
 const Expenses = () => {
     
   return (
     <View>
-      <Text>Expenses</Text>
+      <ExpensesLanding/>
     </View>
   )
 }

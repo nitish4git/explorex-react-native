@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     borderRadius: 9,
     fontFamily: "outfit",
     fontSize: 15,
-    paddingLeft: 19
+    paddingLeft: 19,
+    backgroundColor:'white'
   },
 });
