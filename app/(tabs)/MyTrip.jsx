@@ -24,7 +24,7 @@ const Mytrip = () => {
         <Text style={{textAlign:'center', fontFamily:'outfit',fontSize:18, marginTop: 10}}>No trips planned yet!</Text>
         <Text style={{textAlign:'center', fontFamily:'outfit',fontSize:18, marginTop: 30, marginHorizontal: 30}}>Lookes like its time to plan a new travel experience! Get Started below</Text>
         <TouchableOpacity style={styles.button} 
-        onPress={()=>router.push('/Search-place')}
+        onPress={()=>router.push('/create-trip/Search-place')}
         >
           <Text style={{textAlign:'center',color:'aliceblue' , padding:20 , fontSize: 13 ,fontFamily:'outfit'}}>Create Trip here...</Text>
         </TouchableOpacity>

@@ -2,8 +2,8 @@ import { StyleSheet, Text, ToastAndroid, View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigation, useRouter } from "expo-router";
 import { TouchableOpacity } from "react-native";
-import { SelectTravelerList } from "../constants/Options";
-import { CreateTripContext } from "../context/CreateTripContext";
+import { SelectTravelerList } from "../../constants/Options";
+import { CreateTripContext } from "../../context/CreateTripContext";
 
 const SelectPartner = () => {
   const router = useRouter();
@@ -27,7 +27,7 @@ const SelectPartner = () => {
       return;
     }
     console.log(tripData?.traveler);
-    router.push("/Budget");
+    router.push("/create-trip/Budget");
   };
 
   return (

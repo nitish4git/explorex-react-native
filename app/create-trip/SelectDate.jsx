@@ -4,7 +4,7 @@ import CalendarPicker from "react-native-calendar-picker";
 import { router, useNavigation } from "expo-router";
 import { TouchableOpacity } from "react-native";
 import moment from "moment";
-import { CreateTripContext } from "../context/CreateTripContext";
+import { CreateTripContext } from "../../context/CreateTripContext";
 
 const SelectDate = () => {
   const navigation = useNavigation();
@@ -42,7 +42,7 @@ const SelectDate = () => {
       startDate: startDate,
       endDate: endDate,
     });
-    router.push("/Review");
+    router.push("/create-trip/Review");
   };
 
   return (

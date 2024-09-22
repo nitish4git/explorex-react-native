@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useContext, useEffect } from 'react'
-import { CreateTripContext } from '../context/CreateTripContext';
+import { CreateTripContext } from '../../context/CreateTripContext';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from 'expo-router';
 

@@ -1,9 +1,9 @@
 import { FlatList, StyleSheet, Text, ToastAndroid, View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { router, useNavigation } from "expo-router";
-import { BudgetCategory } from "../constants/BudgetCategory";
+import { BudgetCategory } from "../../constants/BudgetCategory";
 import { TouchableOpacity } from "react-native";
-import { CreateTripContext } from "../context/CreateTripContext";
+import { CreateTripContext } from "../../context/CreateTripContext";
 
 const Budget = () => {
   const [selectedBudget, setSelectedBudget] = useState();
@@ -27,7 +27,7 @@ const Budget = () => {
       return;
     }
     console.log(tripData?.budget);
-    router.push("SelectDate");
+    router.push("/create-trip/SelectDate");
   };
   return (
     <View style={{ flex: 1, backgroundColor: "aliceblue" }}>

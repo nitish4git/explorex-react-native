@@ -4,7 +4,7 @@ import { useNavigation } from "expo-router";
 import { TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 
-import {CreateTripContext} from '../context/CreateTripContext'
+import {CreateTripContext} from '../../context/CreateTripContext'
 
 const SearchPlace = () => {
   const navigation = useNavigation();
@@ -30,7 +30,7 @@ const SearchPlace = () => {
         onChangeText={(value) => setPlace(value)}
       />
       <TouchableOpacity style={{backgroundColor:'black'  ,  marginHorizontal:120, borderRadius: 33 , }}
-      onPress={()=>router.push('/SelectPartner')}>
+      onPress={()=>router.push('/create-trip/SelectPartner')}>
         <Text style={{textAlign:'center' , color: 'aliceblue' , fontFamily:'outfit' , fontSize: 16 , padding: 13}}>Next</Text>
       </TouchableOpacity>
      
