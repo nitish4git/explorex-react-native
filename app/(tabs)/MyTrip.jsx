@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
+import Entypo from '@expo/vector-icons/Entypo';
 
 const Mytrip = () => {
   const router = useRouter();
@@ -19,7 +20,8 @@ const Mytrip = () => {
         />
         </View>
         <View>
-        <Text style={{textAlign:'center', fontFamily:'outfit',fontSize:18, marginTop: 100}}>No trips planned yet!</Text>
+        <Entypo name="location-pin" size={50} color="black" style={styles.locationLogo}/>
+        <Text style={{textAlign:'center', fontFamily:'outfit',fontSize:18, marginTop: 10}}>No trips planned yet!</Text>
         <Text style={{textAlign:'center', fontFamily:'outfit',fontSize:18, marginTop: 30, marginHorizontal: 30}}>Lookes like its time to plan a new travel experience! Get Started below</Text>
         <TouchableOpacity style={styles.button} 
         onPress={()=>router.push('/Search-place')}
@@ -36,6 +38,10 @@ const Mytrip = () => {
 export default Mytrip;
 
 const styles = StyleSheet.create({
+  locationLogo:{
+    marginTop: 90,
+    textAlign:'center'
+  },
   button:{
     backgroundColor:'black',
     marginHorizontal: 60,

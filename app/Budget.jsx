@@ -18,17 +18,16 @@ const Budget = () => {
   const { tripData, setTripData } = useContext(CreateTripContext);
 
   useEffect(() => {
-    setTripData({...tripData,budget: selectedBudget});
+    setTripData({ ...tripData, budget: selectedBudget });
   }, [selectedBudget]);
 
- 
-const onBudgetSelect = () =>{
-  if(!selectedBudget){
-    ToastAndroid.show("Please Select your budget",ToastAndroid.LONG)
-  }
-  console.log(tripData?.budget)
-  router.push('SelectDate')
-}
+  const onBudgetSelect = () => {
+    if (!selectedBudget) {
+      ToastAndroid.show("Please Select your budget", ToastAndroid.LONG);
+    }
+    console.log(tripData?.budget);
+    router.push("SelectDate");
+  };
   return (
     <View style={{ flex: 1, backgroundColor: "aliceblue" }}>
       <View style={{ padding: 20, paddingTop: 100 }}>
@@ -52,13 +51,39 @@ const onBudgetSelect = () =>{
             onPress={() => setSelectedBudget(item.category)}
             key={item.id}
           >
-            <Text style={styles.budgetText}>{item.category}</Text>
+            <View style={styles.iconContainer}>
+              <View style={{ padding: 8 }}>
+                <Text style={styles.budgetText}>{item.category}</Text>
+                <Text style={{fontFamily:'outfit'}}>{item.desc}</Text>
+              </View>
+              <View >
+              <Text style={{fontSize:30 , paddingRight: 10 , }}>{item.icon}</Text>
+
+              </View>
+            </View>
           </TouchableOpacity>
         )}
       />
-      <TouchableOpacity style={{marginBottom:100 , backgroundColor:'black' , marginHorizontal: 50 , borderRadius:33}}
-      onPress={onBudgetSelect}>
-        <Text style={{textAlign:'center' , fontFamily:'outfit-bold' , fontSize: 16, padding:15 , color:'aliceblue'}}>Continue</Text>
+      <TouchableOpacity
+        style={{
+          marginBottom: 100,
+          backgroundColor: "black",
+          marginHorizontal: 50,
+          borderRadius: 33,
+        }}
+        onPress={onBudgetSelect}
+      >
+        <Text
+          style={{
+            textAlign: "center",
+            fontFamily: "outfit-bold",
+            fontSize: 16,
+            padding: 15,
+            color: "aliceblue",
+          }}
+        >
+          Continue
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -66,6 +91,12 @@ const onBudgetSelect = () =>{
 
 export default Budget;
 const styles = StyleSheet.create({
+  iconContainer:{
+    display:'flex',
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center'
+  },
   budgetOption: {
     backgroundColor: "#E1EBEE",
     marginTop: 20,
@@ -78,7 +109,7 @@ const styles = StyleSheet.create({
     // alignItems: "center",
   },
   budgetText: {
-    padding: 15,
+    // padding: 15,
     fontFamily: "outfit-bold",
     fontSize: 19,
   },

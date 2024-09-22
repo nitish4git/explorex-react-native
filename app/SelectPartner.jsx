@@ -71,7 +71,7 @@ const SelectPartner = () => {
                   {item.desc}
                 </Text>
               </View>
-              <Text style={{ fontSize: 25 }}>{item.icon}</Text>
+              <Text style={{ fontSize: 32}}>{item.icon}</Text>
             </TouchableOpacity>
           );
         })}

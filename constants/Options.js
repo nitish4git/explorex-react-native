@@ -1,22 +1,23 @@
 export const SelectTravelerList = [
     {
         title:'Just Me',
-        desc : "a sole taveler",
-        icon:'❤️', 
+        desc : "Embrace the solitude, explore your soul",
+        icon:'💆🏻', 
     },
     {
         title:'A Couple',
-        desc : "a sole taveler",
-        icon:'❤️', 
+        desc : "Sunsets and kisses on foreign shores",
+        icon:'😍', 
     },
     {
         title:'Family',
-        desc : "a sole taveler",
+        desc : "Love, laughter, and travel",
         icon:'❤️', 
     },
     {
         title:'Friends',
-        desc : "a sole taveler",
-        icon:'❤️', 
+        desc : "Pack your bags, call your friends, let's go!",
+        icon:'🥂', 
     },
 ]
+// 🛒💸💰
