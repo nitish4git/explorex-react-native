@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react';
-import ExpensesLanding from '../../components/Expenses/ExpensesLanding';
+import React from 'react'
+import RecentTrips from '../../components/Expenses/RecentTrips'
+
 const Expenses = () => {
-    
   return (
     <View>
-      <ExpensesLanding/>
+      <RecentTrips/>
     </View>
   )
 }

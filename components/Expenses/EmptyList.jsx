@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
-
-const ExpensesLanding = () => {
-    const router = useRouter()
+const EmptyList = () => {
+    const router = useRouter();
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={{textAlign:'center', fontSize:50}}>💰</Text>
-        <Text style={{fontFamily:'outfit-bold',fontSize:26,marginTop: 15 ,textAlign:'center'}}>Add Expenses Here..</Text>
+    <>
+      <View style={styles.container}>
+      <View >
+        <Text style={{textAlign:'center', fontSize:50}}>✈️</Text>
+        <Text style={{fontFamily:'outfit-bold',fontSize:26,marginTop: 15 ,textAlign:'center'}}>No trips to be planned yet</Text>
         <Text style={{fontFamily:'outfit',fontSize:18,marginTop: 15,textAlign:'center'}}>From zero to hero—track every cent.</Text>
       </View>
       <TouchableOpacity style={styles.startButton}>
@@ -20,10 +20,12 @@ const ExpensesLanding = () => {
         </Text>
       </TouchableOpacity>
     </View>
+    
+    </>
   );
 };
 
-export default ExpensesLanding;
+export default EmptyList;
 
 const styles = StyleSheet.create({
     startButton:{
@@ -35,7 +37,7 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor:'aliceblue',
         height:'100%',
-        paddingTop:250,
+        // paddingTop:250,
         alignItems:'center',
         
     }
