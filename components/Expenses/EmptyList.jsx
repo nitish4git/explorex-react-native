@@ -14,9 +14,9 @@ const EmptyList = () => {
       </View>
       <TouchableOpacity style={styles.startButton}>
         <Text style={{color:'aliceblue', fontFamily:'outfit-medium', padding:15, textAlign:'center'}}
-        onPress={()=>router.push('/expenses-cal/Tripdetails')}
+        onPress={()=>router.push('/expenses-cal/Addtrip')}
         >
-            Start
+            Add Trip
         </Text>
       </TouchableOpacity>
     </View>

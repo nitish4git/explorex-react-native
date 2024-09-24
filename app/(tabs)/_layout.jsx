@@ -4,7 +4,8 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: 'white' , headerShown: false , tabBarStyle:{backgroundColor:'black'} }}>
+    <Tabs screenOptions={{ tabBarActiveTintColor: 'white' , tabBarLabelStyle:{fontFamily:'outfit' , fontSize: 10}, headerShown: false , tabBarStyle:{backgroundColor:'black' , bottom:20, marginHorizontal: 20 , borderRadius:33 , height: 70 , paddingBottom: 8 , position:'absolute', shadowColor:'skyblue' , shadowOffset:{width:10 , height:10} , elevation: 10 ,}}}
+    >
       <Tabs.Screen
         name="MyTrip"
         options={{

@@ -5,8 +5,8 @@ import { useFonts } from 'expo-font';
 import {CreateTripContext} from '../context/CreateTripContext'
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect} from 'react';
-
-
+import store from '../redux/store'
+import {Provider} from 'react-redux';
 const layout = () => {
   const [loaded, error] = useFonts({
     "outfit-bold" : require('../assets/fonts/Outfit-Bold.ttf'),
@@ -20,8 +20,9 @@ const layout = () => {
     }
   }, [loaded, error]);
 
-const [tripData , setTripData] = useState([])
+const [tripData , setTripData] = useState([]);
   return (
+    <Provider store={store}>
     <CreateTripContext.Provider value={{tripData , setTripData}}>
    <Stack screenOptions={{headerShown:false}}>
     {/* <Stack.Screen name='index' options={{headerShown:false}}/> */}
@@ -29,6 +30,7 @@ const [tripData , setTripData] = useState([])
 
    </Stack>
    </CreateTripContext.Provider>
+   </Provider>
   )
 }
 

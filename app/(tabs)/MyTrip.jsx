@@ -10,13 +10,13 @@ const Mytrip = () => {
     <>
       <View style={styles.mainContainer} >
         <View style={styles.topContainer}>
-        <Text style={{ fontSize: 40, fontFamily: "outfit-bold" }}>My Trip</Text>
+        <Text style={{ fontSize: 40, fontFamily: "outfit-medium" }}>My Trip</Text>
         <Ionicons
           name="add-circle"
           size={24}
           color="black"
           style={{ textAlign: "center", fontSize: 40, paddingTop: 10 }}
-          onPress={()=>router.push('/Search-place')}
+          onPress={()=>router.push('/create-trip/Search-place')}
         />
         </View>
         <View>
