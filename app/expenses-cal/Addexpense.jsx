@@ -7,6 +7,7 @@ import {
   Pressable,
   ToastAndroid,
 } from "react-native";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRouter } from "expo-router";
 import {
@@ -21,11 +22,9 @@ const Addexpense = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const router = useRouter();
-  const [totalAmount, setTotalAmount] = useState(0);
   const [inputAmount, setInputAmount] = useState();
   const [reason, setReason] = useState("");
   const [category, setCategory] = useState(null);
-  const [isPressed , setIsPressed] = useState(false);
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -33,27 +32,21 @@ const Addexpense = () => {
       headerTransparent: true,
     });
   });
-  
-  let bgColor= 'red';
-  if(category) bgColor="red";
-  const handleCategory = (value)=>{
-    setCategory(value);
-    setIsPressed(value)
 
-  }
+  let bgColor = "red";
+  if (category) bgColor = "red";
+  const handleCategory = (value) => {
+    setCategory(value);
+  };
   const handleAddExpense = () => {
-    
     if (!inputAmount) {
       ToastAndroid.show("Enter Amount", ToastAndroid.LONG);
     } else if (!reason) {
       ToastAndroid.show("Enter Reason", ToastAndroid.LONG);
     } else if (category == null) {
-      
       ToastAndroid.show("Select Category", ToastAndroid.LONG);
-    } 
-    else {
-      dispatch(addHistory({ totalAmount, inputAmount, reason, category }));
-      setTotalAmount(`${parseInt(totalAmount) + parseInt(inputAmount)}`);
+    } else {
+      dispatch(addHistory({ inputAmount, reason, category }));
       setInputAmount();
       setReason();
       setCategory(null);
@@ -63,100 +56,146 @@ const Addexpense = () => {
   return (
     <View
       style={{
-        paddingTop: 75,
-        paddingHorizontal: hp(3),
-        backgroundColor: "aliceblue",
+        paddingTop: hp(9),
+        backgroundColor: "red",
         flex: 1,
       }}
     >
-      <View>
-        <Text style={{ fontFamily: "outfit-bold", fontSize: hp(3) }}>
-          Add Expense
-        </Text>
-        <Text style={{ fontFamily: "outfit", fontSize: hp(2), color: "gray" }}>
-          Track your all expenses
-        </Text>
-      </View>
-      <View>
-        <Pressable onPress={() => router.push("/expenses-cal/ExpenseHistory")}>
-          <Text style={styles.display}>{totalAmount}</Text>
-        </Pressable>
-      </View>
-      <View style={{ marginTop: hp(3) }}>
-        <View style={styles.inputField}>
-          <Text style={styles.inputLabel}>Amount </Text>
-          <TextInput
-            style={styles.inputData}
-            placeholder="Amount"
-            value={inputAmount}
-            onChangeText={(value) => setInputAmount(value)}
-          />
-        </View>
-        <View style={styles.inputField }>
-          <Text style={styles.inputLabel}>For what ? </Text>
-          <TextInput
-            style={styles.inputData}
-            placeholder="Reason"
-            value={reason}
-            onChangeText={(value) => setReason(value)}
-          />
-        </View>
-      </View>
-      <View>
+      <View style={{ paddingHorizontal: wp(4) }}>
         <Text
           style={{
-            fontFamily: "outfit-medium",
-            fontSize: hp(1.5),
-            paddingLeft: hp(1.4),
+            fontFamily: "outfit-bold",
+            fontSize: hp(3),
+            color: "aliceblue",
           }}
         >
-          Select Category
+          Add Expense
         </Text>
-        <View style={[styles.categoryCard]}>
-          <FlatList
-            data={Category}
-            renderItem={({ item }) => {
-              return (
-                <TouchableOpacity
-                  style={[styles.categoryItem, category === item.category && {backgroundColor:'lightgreen'}]}
-                  onPress={()=>handleCategory(item.category)}
-                >
-                  <Text
-                    style={{
-                      fontFamily: "outfit",
-                      fontSize: hp(1.85),
-                      textAlign: "center",
-                      textAlignVertical: "center",
-                    }}
-                  >{`${item.icon} ${item.category}`}</Text>
-                </TouchableOpacity>
-              );
-            }}
-            numColumns={3}
-            columnWrapperStyle={{
-              justifyContent: "space-between",
-            }}
-          />
-          <TouchableOpacity
+
+        <Text
+          style={{ fontFamily: "outfit", fontSize: hp(2), color: "silver" }}
+        >
+          Track your all expenses
+        </Text>
+        <TouchableOpacity
+          onPress={() => router.push("/expenses-cal/ExpenseHistory")}
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Text
             style={{
-              backgroundColor: "black",
-              borderRadius: 33,
-              padding: hp(2.5),
-              marginTop: hp(3),
+              fontFamily: "outfit",
+              fontSize: hp(1.5),
+              color: "black",
+              paddingRight: wp(2),
+              textDecorationLine: "underline",
             }}
-            onPress={handleAddExpense}
           >
-            <Text
-              style={{
-                fontFamily: "outfit-bold",
-                fontSize: hp(2),
-                color: "aliceblue",
-                textAlign: "center",
+            View all expenses
+          </Text>
+          <FontAwesome6
+            name="arrow-right-from-bracket"
+            size={hp(1.5)}
+            color="black"
+          />
+        </TouchableOpacity>
+      </View>
+      <View
+        style={{
+          backgroundColor: "aliceblue",
+          flex: 1,
+          paddingHorizontal: wp(2),
+          borderTopRightRadius: 20,
+          borderTopLeftRadius: 20,
+          marginTop: hp(5),
+        }}
+      >
+        <View style={{ marginTop: hp(3) }}>
+          <View style={styles.inputField}>
+            <Text style={styles.inputLabel}>Amount </Text>
+            <TextInput
+              style={styles.inputData}
+              placeholder="Amount"
+              value={inputAmount}
+              onChangeText={(value) => setInputAmount(value)}
+            />
+          </View>
+          <View style={styles.inputField}>
+            <Text style={styles.inputLabel}>For what ? </Text>
+            <TextInput
+              style={styles.inputData}
+              placeholder="Reason"
+              value={reason}
+              onChangeText={(value) => setReason(value)}
+            />
+          </View>
+        </View>
+        <View>
+          <Text
+            style={{
+              color: "tomato",
+      fontFamily: "outfit-bold",
+      fontSize: hp(1.8),
+      paddingLeft:wp(2)
+            }}
+          >
+            Select Category
+          </Text>
+          <View style={[styles.categoryCard]}>
+            <FlatList
+              data={Category}
+              renderItem={({ item }) => {
+                return (
+                  <TouchableOpacity
+                    style={[
+                      styles.categoryItem,
+                      category === item.category && {
+                        backgroundColor: "tomato",
+                      },
+                    ]}
+                    onPress={() => handleCategory(item.category)}
+                  >
+                    <Text
+                      style={{
+                        fontFamily: "outfit",
+                        fontSize: hp(1.85),
+                        textAlign: "center",
+                        textAlignVertical: "center",
+                      }}
+                    >{`${item.icon} ${item.category}`}</Text>
+                  </TouchableOpacity>
+                );
               }}
+              numColumns={3}
+              columnWrapperStyle={{
+                justifyContent: "space-between",
+              }}
+            />
+            <TouchableOpacity
+              style={{
+                backgroundColor: "black",
+                borderRadius: 33,
+                padding: hp(2.5),
+                marginTop: hp(3),
+              }}
+              onPress={handleAddExpense}
             >
-              Add Amount
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={{
+                  fontFamily: "outfit-bold",
+                  fontSize: hp(2),
+                  color: "aliceblue",
+                  textAlign: "center",
+                }}
+              >
+                Add Amount
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
@@ -167,23 +206,22 @@ export default Addexpense;
 
 const styles = StyleSheet.create({
   categoryItem: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     height: hp(6),
     width: wp(25),
-    margin: hp(0.5),
+    marginVertical:hp(0.5),
     textAlign: "center",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 30,
-    shadowColor: "black",
-    shadowOffset: 10,
-    elevation: 10,
+    borderRadius: 10,
     borderColor: "tomato",
     borderWidth: 1,
   },
   categoryCard: {
-    padding: hp(1),
+    // padding: hp(1),
+    paddingHorizontal:wp(3),
+    paddingTop:hp(1)
   },
   display: {
     backgroundColor: "#E5E4E2",
@@ -206,9 +244,9 @@ const styles = StyleSheet.create({
     padding: hp(1),
   },
   inputLabel: {
-    fontFamily: "outfit-medium",
-    fontSize: hp(1.5),
-    paddingLeft: hp(0.5),
+      color: "tomato",
+      fontFamily: "outfit-bold",
+      fontSize: hp(1.8),
   },
   inputData: {
     fontFamily: "outfit-medium",

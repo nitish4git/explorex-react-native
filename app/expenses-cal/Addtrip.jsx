@@ -2,6 +2,10 @@ import { StyleSheet, Text, TextInput, ToastAndroid, View } from "react-native";
 import React, {useEffect, useState } from "react";
 import { useNavigation, useRouter } from "expo-router";
 import { TouchableOpacity } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 import { useDispatch } from "react-redux";
 import { addTrip } from "../../redux/tripSlice";
 const Tripdetails = () => {
@@ -33,10 +37,11 @@ const Tripdetails = () => {
 
  
   return (
-    <View style={{ paddingLeft:15 , backgroundColor:'aliceblue' , flex:1}}>
-      <View style={{ paddingTop: 75 }}>
+    <View style={{backgroundColor:'aliceblue' , flex:1}}>
+      <View style={{ paddingTop: hp(10) , marginHorizontal:wp(7)}}>
+        <View>
         <Text
-          style={{  fontFamily: "outfit-bold", fontSize: 35 }}
+          style={{  fontFamily: "outfit-bold", fontSize: hp(5) }}
         >
           Trip Details
         </Text>
@@ -44,27 +49,27 @@ const Tripdetails = () => {
           style={{
            
             fontFamily: "outfit",
-            fontSize: 17,
+            fontSize: hp(2),
             color: "gray",
           }}
         >
           Rememner your happiness
         </Text>
-      </View>
+        </View>
       <View style={styles.formContainer}>
-        <View style={{marginBottom:30}}>
-          <Text style={{fontFamily:'outfit-bold', fontSize:20}}>Where on Earth ?</Text>
-          <TextInput style={{borderColor:'black', borderWidth:2,borderRadius:7, padding:7}} onChangeText={(value)=>setPlace(value)}/>
+        <View style={{marginBottom:hp(3)}}>
+          <Text style={{color:'tomato',fontFamily:'outfit-bold',fontSize:hp(1.8)}}>Location</Text>
+          <TextInput style={styles.textInput} onChangeText={(value)=>setPlace(value)} placeholder='Location'/>
         </View>
         <View style={{marginBottom:30}}>
-          <Text style={{fontFamily:'outfit-bold', fontSize:20}}>Which Country ?</Text>
-          <TextInput style={{borderColor:'black', borderWidth:2,borderRadius:7, padding:7}}
+          <Text style={{color:'tomato',fontFamily:'outfit-bold',fontSize:hp(1.8)}}>Country</Text>
+          <TextInput style={styles.textInput} placeholder='Country'
           onChangeText={(value)=>setCountry(value)}
           value={country}/>
         </View>
         <View>
-          <Text style={{fontFamily:'outfit-bold', fontSize:20}}>Date ?</Text>
-          <TextInput style={{borderColor:'black', borderWidth:2,borderRadius:7, padding:7}}
+          <Text style={{color:'tomato',fontFamily:'outfit-bold',fontSize:hp(1.8)}}>Select Date</Text>
+          <TextInput style={styles.textInput} placeholder='Select Date'
           onChangeText={(value)=>setTripDate(value)}
           
           />
@@ -75,6 +80,8 @@ const Tripdetails = () => {
           <Text style={{fontFamily:'outfit', fontSize:15 , color:'aliceblue' , textAlign:'center'}}>Add Trip</Text>
         </TouchableOpacity>
       </View>
+      </View>
+
     </View>
   );
 };
@@ -84,7 +91,12 @@ export default Tripdetails;
 const styles = StyleSheet.create({
   formContainer:{
     marginTop:30,
-    marginHorizontal:20,
+    // marginHorizontal:20,
     
-  }
+  },
+  textInput:{
+    borderBlockColor: "black",
+    borderBottomWidth: 2,
+    padding: hp(0.3),
+  },
 });

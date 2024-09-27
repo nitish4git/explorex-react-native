@@ -3,6 +3,10 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import Entypo from '@expo/vector-icons/Entypo';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const Mytrip = () => {
   const router = useRouter();
@@ -10,7 +14,7 @@ const Mytrip = () => {
     <>
       <View style={styles.mainContainer} >
         <View style={styles.topContainer}>
-        <Text style={{ fontSize: 40, fontFamily: "outfit-medium" }}>My Trip</Text>
+        <Text style={{ fontSize: hp(5), fontFamily: "outfit-medium" }}>My Trip</Text>
         <Ionicons
           name="add-circle"
           size={24}
@@ -26,7 +30,8 @@ const Mytrip = () => {
         <TouchableOpacity style={styles.button} 
         onPress={()=>router.push('/create-trip/Search-place')}
         >
-          <Text style={{textAlign:'center',color:'aliceblue' , padding:20 , fontSize: 13 ,fontFamily:'outfit'}}>Create Trip here...</Text>
+          
+          <Text style={{textAlign:'center',color:'aliceblue' , padding:hp(2) , fontSize: hp(2.5) ,fontFamily:'outfit'}}>Generate Trip</Text>
         </TouchableOpacity>
       </View>
       </View>

@@ -1,6 +1,10 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 const MainScreen = () => {
   const router = useRouter();
   return (
@@ -11,15 +15,15 @@ const MainScreen = () => {
           source={require("../../assets/images/Banner.jpeg")}
         />
       </View>
-      <View style={{ marginTop: -70 }}>
+      <View style={{ marginTop: hp(-8) }}>
         <View style={styles.textContainer}>
           <Text style={styles.HeadingName}>ExploreX</Text>
           <Text
             style={{
               textAlign: "center",
-              paddingHorizontal: 30,
-              marginTop: 20,
-              fontSize: 22,
+              paddingHorizontal: wp(15),
+              marginTop: hp(3),
+              fontSize: hp(2.5),
               fontFamily:'outfit'
             }}
           >
@@ -28,10 +32,10 @@ const MainScreen = () => {
           <TouchableOpacity style={styles.button} onPress={()=>router.push('/auth/Signin')}>
             <Text
               style={{
-                padding: 15,
+                padding: hp(2),
                 color: "aliceblue",
                 textAlign: "center",
-                fontSize: 22,
+                fontSize: hp(2.5),
                 fontFamily:'outfit'
               }}
             >
@@ -49,7 +53,7 @@ export default MainScreen;
 const styles = StyleSheet.create({
   Image: {
     width: "100%",
-    height: 500,
+    height: hp(60),
   },
   textContainer: {
     backgroundColor: "aliceblue",
@@ -58,14 +62,14 @@ const styles = StyleSheet.create({
   },
   HeadingName: {
     textAlign: "center",
-    fontSize: 55,
-    marginTop: 20,
+    fontSize: hp(6.5),
+    marginTop: hp(5),
     fontFamily:'outfit-bold'
   },
   button: {
     backgroundColor: "black",
-    marginHorizontal: 70,
-    marginTop: 50,
+    marginHorizontal: wp(15),
+    marginTop: hp(7),
     borderRadius: 30,
   },
 });

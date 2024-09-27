@@ -1,17 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react';
-import { Stack } from 'expo-router/stack';
-import { useFonts } from 'expo-font';
-import {CreateTripContext} from '../context/CreateTripContext'
-import * as SplashScreen from 'expo-splash-screen';
-import {useEffect} from 'react';
-import store from '../redux/store'
-import {Provider} from 'react-redux';
+import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Stack } from "expo-router/stack";
+import { useFonts } from "expo-font";
+import { CreateTripContext } from "../context/CreateTripContext";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
+import store from "../redux/store";
+import { Provider } from "react-redux";
 const layout = () => {
   const [loaded, error] = useFonts({
-    "outfit-bold" : require('../assets/fonts/Outfit-Bold.ttf'),
-    "outfit" : require('../assets/fonts/Outfit-Regular.ttf'),
-    "outfit-medium" : require('../assets/fonts/Outfit-Bold.ttf'),
+    "outfit-bold": require("../assets/fonts/Outfit-Bold.ttf"),
+    outfit: require("../assets/fonts/Outfit-Regular.ttf"),
+    "outfit-medium": require("../assets/fonts/Outfit-Bold.ttf"),
   });
 
   useEffect(() => {
@@ -20,20 +20,19 @@ const layout = () => {
     }
   }, [loaded, error]);
 
-const [tripData , setTripData] = useState([]);
+  const [tripData, setTripData] = useState([]);
   return (
     <Provider store={store}>
-    <CreateTripContext.Provider value={{tripData , setTripData}}>
-   <Stack screenOptions={{headerShown:false}}>
-    {/* <Stack.Screen name='index' options={{headerShown:false}}/> */}
-    <Stack.Screen name='(tabs)' options={{headerShown:false}}/>
+      <CreateTripContext.Provider value={{ tripData, setTripData }}>
+        <Stack screenOptions={{ headerShown: false }}>
+          {/* <Stack.Screen name='index' options={{headerShown:false}}/> */}
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </CreateTripContext.Provider>
+    </Provider>
+  );
+};
 
-   </Stack>
-   </CreateTripContext.Provider>
-   </Provider>
-  )
-}
+export default layout;
 
-export default layout
-
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
