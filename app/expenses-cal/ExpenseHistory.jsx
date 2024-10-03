@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, FlatList } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "expo-router";
 import {
   widthPercentageToDP as wp,
@@ -11,12 +11,12 @@ import EmptyHistory from "../../components/Expenses/EmptyHistory";
 
 const ExpenseHistory = () => {
   const historyDetails = useSelector((state) => state.history.historyDetails);
-
   const navigation = useNavigation();
   const date = new Date();
   const curMonth = date.getMonth() + 1;
   const curDay = date.getDay();
   const curYear = date.getFullYear();
+  const [totalAmount , setTotalAmount] = useState(0)
 
   useEffect(() => {
     navigation.setOptions({
@@ -30,7 +30,7 @@ const ExpenseHistory = () => {
     start={{x:0 , y:1}}
     end={{x:2.5 , y:0.8}}
       style={{
-        paddingTop: hp(7),
+        paddingTop: hp(10),
         backgroundColor: "red",
       }}
     >
@@ -49,7 +49,7 @@ const ExpenseHistory = () => {
           Know where your money goes
         </Text>
         <View style={{marginBottom:hp(2)}}>
-          <Text style={{fontFamily:'outfit-bold' , fontSize:hp(2) , color:'gold'}}>Total Expenses: {historyDetails.inputAmount}</Text>
+          <Text style={{fontFamily:'outfit-bold' , fontSize:hp(2) , color:'gold'}}>Total Expenses: 0</Text>
         </View>
       </View>
       <View style={{backgroundColor:'white' , paddingHorizontal:wp(7) , height:'100%' , borderTopLeftRadius:20 , borderTopRightRadius:20}}>

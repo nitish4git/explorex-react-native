@@ -27,7 +27,7 @@ const Addexpense = () => {
   const [category, setCategory] = useState(null);
   useEffect(() => {
     navigation.setOptions({
-      headerShown: true,
+      headerShown: false,
       headerTitle: "",
       headerTransparent: true,
     });
@@ -56,7 +56,7 @@ const Addexpense = () => {
   return (
     <View
       style={{
-        paddingTop: hp(9),
+        paddingTop: hp(10),
         backgroundColor: "red",
         flex: 1,
       }}
@@ -137,7 +137,7 @@ const Addexpense = () => {
         <View>
           <Text
             style={{
-              color: "tomato",
+              color: "#F88379",
       fontFamily: "outfit-bold",
       fontSize: hp(1.8),
       paddingLeft:wp(2)
