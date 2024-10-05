@@ -22,12 +22,16 @@ import randomImages from "../../assets/images/RandomImages";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addHistory } from "../../redux/historySlice";
 
 const RecentTrips = () => {
   const router = useRouter();
   const Trips = useSelector((state) => state.trip.trips);
   const [recentTrips, setRecentTrips] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [selected , setSelected] = useState('');
+  const dispatch = useDispatch();
   const fetchRecentTrips = async () => {
     try {
       setIsLoading(true);
@@ -38,11 +42,24 @@ const RecentTrips = () => {
       return console.log("Something is Wrong", error);
     }
   };
-
-  // console.log(typeof(recentTrips))
+  // Calling REST API For getting data from database
   useEffect(() => {
     fetchRecentTrips();
   }, [Trips]);
+
+
+  const handleTrip = (value)=>{
+    setSelected(value.place)
+    dispatch(addHistory({selectedTrip:selected}))
+   router.push('/expenses-cal/Addexpense')
+  }
+  // useEffect(()=>{
+  //   console.log(selected)
+  // },[selected])
+
+
+
+
 
   return (
     <View>
@@ -95,11 +112,11 @@ const RecentTrips = () => {
           ) : (
             <View style={styles.card}>
               <FlatList
-                data={recentTrips.reverse()}
-                renderItem={({ item }) => {
+                data={recentTrips}
+                renderItem={({item}) => {
                   return (
                     <Pressable
-                      onPress={() => router.push("/expenses-cal/Addexpense")}
+                      onPress={()=>handleTrip(item)}
                     >
                       <LinearGradient
                         colors={["#ff0000", "#2b1637"]}
@@ -120,6 +137,7 @@ const RecentTrips = () => {
                                   fontFamily: "outfit-medium",
                                   fontSize: 20,
                                   color: "aliceblue",
+                                  textTransform:'capitalize'
                                 }}
                               >
                                 {item.place}
@@ -129,6 +147,7 @@ const RecentTrips = () => {
                                   fontFamily: "outfit",
                                   fontSize: 14,
                                   color: "silver",
+                                  textTransform:'capitalize'
                                 }}
                               >
                                 {item.country}
@@ -145,9 +164,6 @@ const RecentTrips = () => {
                               >
                                 {item.tripDate}
                               </Text>
-                              {/* <TouchableOpacity onPress={console.log('pressed')}  style={{display:'flex', justifyContent:'flex-end' , flexDirection:'row' , marginRight:wp(3)}}>
-                           <FontAwesome6 name="trash" size={hp(2)} color="black"   />
-                           </TouchableOpacity> */}
                             </View>
                           </View>
                         </View>
@@ -159,6 +175,7 @@ const RecentTrips = () => {
                 keyExtractor={(item) => item._id}
                 showsVerticalScrollIndicator={false}
                 style={{ marginBottom: hp(12) }}
+                
               />
             </View>
           )}

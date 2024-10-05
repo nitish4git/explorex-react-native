@@ -1,23 +1,50 @@
 import {
+  Alert,
   Pressable,
   StyleSheet,
   Text,
   TextInput,
+  ToastAndroid,
   TouchableOpacity,
   View,
 } from "react-native";
 import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { LinearGradient } from "expo-linear-gradient";
+import axios from "axios";
 
 const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    if (!email) {
+      ToastAndroid.show("Enter Email", ToastAndroid.LONG);
+    } else if (!password) {
+      ToastAndroid.show("Enter Password", ToastAndroid.LONG);
+    } else {
+      const userData = { email, password };
+      await axios
+        .post("http://192.168.1.3:5000/api/login", userData)
+        .then((res) =>{
+          // console.log(res.data)
+          if(res.data.status === "ok"){
+            Alert.alert("Login successfull");
+            AsyncStorage.setItem("token",res.data.data)
+            router.navigate('(tabs)/MyTrip')
+          }else if(res.data.oldUser == null){
+            Alert.alert("Invalid email or password")
+          }
+        } )
+        .catch((e) => console.log("something wents wrong", e));
+    }
+  };
 
   return (
     <>
@@ -81,7 +108,7 @@ const Login = () => {
               onChangeText={(value) => setPassword(value)}
             />
           </View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => handleLogin()}>
             <Text
               style={{
                 color: "aliceblue",

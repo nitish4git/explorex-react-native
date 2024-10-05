@@ -1,14 +1,24 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
-
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 const User = () => {
   const router = useRouter();
+  // const getUserData = async()=>{
+  //   const token = await AsyncStorage.getItem('token');
+  //   axios.post("http://192.168.1.3:5000/api/getUserData",{token:token}).then(res=>console.log(res.data))
+  //   console.log(token)
+  // }
+  // useEffect(()=>{
+  //   getUserData()
+  // },[])
   return (
     <View style={{ backgroundColor: "red" }}>
       <View style={{ paddingHorizontal: wp(3), paddingBottom: hp(2) }}>
@@ -59,58 +69,86 @@ const User = () => {
         }}
       >
         <View style={styles.myaccCard}>
-          <Text style={{ fontSize: hp(2.5) }}>✈️</Text>
-          <Text
-            style={{
-              fontFamily: "outfit",
-              fontSize: hp(2.5),
-              paddingLeft: wp(4),
-            }}
-          >
-            Recent Trips
-          </Text>
+          <View style={styles.list}>
+            <Text style={{ fontSize: hp(2.5) }}>✈️</Text>
+            <Text
+              style={{
+                fontFamily: "outfit",
+                fontSize: hp(2.5),
+                paddingLeft: wp(4),
+              }}
+            >
+              Recent Trips
+            </Text>
+          </View>
+          <MaterialCommunityIcons name="greater-than" size={15} color="gray" />
         </View>
         <View style={styles.myaccCard}>
-          <Text style={{ fontSize: hp(2.5) }}>⚙️</Text>
-          <Text
-            style={{
-              fontFamily: "outfit",
-              fontSize: hp(2.5),
-              paddingLeft: wp(4),
-            }}
-          >
-            Account settings
-          </Text>
+          <View style={styles.list}>
+            <Text style={{ fontSize: hp(2.5) }}>⚙️</Text>
+            <Text
+              style={{
+                fontFamily: "outfit",
+                fontSize: hp(2.5),
+                paddingLeft: wp(4),
+              }}
+            >
+              Account settings
+            </Text>
+          </View>
+          <MaterialCommunityIcons name="greater-than" size={15} color="gray" />
         </View>
-        <TouchableOpacity style={styles.myaccCard}
-        onPress={()=>router.push("/about/About")}
+        <TouchableOpacity
+          style={styles.myaccCard}
+          onPress={() => router.push("/about/About")}
         >
-          <Text style={{ fontSize: hp(2.5) }}>🤖</Text>
-          <Text
-            style={{
-              fontFamily: "outfit",
-              fontSize: hp(2.5),
-              paddingLeft: wp(4),
-            }}
-          >
-            About us
-          </Text>
+          <View style={styles.list}>
+            <Text style={{ fontSize: hp(2.5) }}>🤖</Text>
+            <Text
+              style={{
+                fontFamily: "outfit",
+                fontSize: hp(2.5),
+                paddingLeft: wp(4),
+              }}
+            >
+              About us
+            </Text>
+          </View>
+          <MaterialCommunityIcons name="greater-than" size={15} color="gray" />
         </TouchableOpacity>
         <View style={styles.myaccCard}>
-          <Text style={{ fontSize: hp(2.5) }}>📤</Text>
+          <View style={styles.list}>
+            <Text style={{ fontSize: hp(2.5) }}>📤</Text>
+            <Text
+              style={{
+                fontFamily: "outfit",
+                fontSize: hp(2.5),
+                paddingLeft: wp(4),
+              }}
+            >
+              Log out
+            </Text>
+          </View>
+        </View>
+        <View style={{ paddingTop: hp(3) }}>
           <Text
             style={{
+              textAlign: "center",
               fontFamily: "outfit",
-              fontSize: hp(2.5),
-              paddingLeft: wp(4),
+              fontSize: hp(1.5),
             }}
           >
-            Log out
+            Develelop by{" "}
           </Text>
-        </View>
-        <View style={{paddingTop:hp(3)}}>
-
-        <Text style={{textAlign:'center', fontFamily:'outfit', fontSize:hp(1.5)}}>Develelop by Nitish Roy❤️</Text>
+          <Text
+            style={{
+              textAlign: "center",
+              fontFamily: "outfit",
+              fontSize: hp(1.7),
+            }}
+          >
+            Nitish ❤️ & Rohit ❤️
+          </Text>
         </View>
       </View>
     </View>
@@ -137,8 +175,13 @@ const styles = StyleSheet.create({
     marginTop: hp(1),
     borderBlockColor: "gray",
     borderBottomWidth: 0.5,
+    marginHorizontal: wp(4),
     padding: hp(2),
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
+  },
+  list: {
+    flexDirection: "row",
   },
 });

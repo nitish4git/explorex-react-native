@@ -1,9 +1,11 @@
 import {
+  Alert,
   ImageBackground,
   Pressable,
   StyleSheet,
   Text,
   TextInput,
+  ToastAndroid,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -14,6 +16,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { LinearGradient } from "expo-linear-gradient";
+import axios from "axios";
 
 const Signup = () => {
   const router = useRouter();
@@ -21,6 +24,29 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleRegister = async () => {
+    if (!name) {
+      ToastAndroid.show("Enter Name", ToastAndroid.LONG);
+    } else if (!email) {
+      ToastAndroid.show("Enter Email", ToastAndroid.LONG);
+    } else if (!phone) {
+      ToastAndroid.show("Enter Phone", ToastAndroid.LONG);
+    } else if (!password) {
+      ToastAndroid.show("Enter Password", ToastAndroid.LONG);
+    }else{
+      const userData = {name , email , phone:Number(phone) , password}
+      try {
+        const res = await axios.post("http://192.168.1.3:5000/api/register",userData)
+        console.log(res.data)
+        Alert.alert("Account Created")
+        router.back();
+      } catch (error) {
+        console.log("Something went wrong", error)
+      }
+    }
+  };
+
   return (
     <>
       <View style={styles.topContainer}>
@@ -122,7 +148,8 @@ const Signup = () => {
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => router.push("/(tabs)/MyTrip")}
+            onPress={() => handleRegister()}
+            // onPress={() => router.push("/(tabs)/MyTrip")}
           >
             <Text
               style={{

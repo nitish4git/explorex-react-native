@@ -6,6 +6,7 @@ const About = () => {
   return (
     <View style={{paddingTop:50}}>
       <Image source={require('../../assets/gif/loading.gif')}/>
+      <Image source={require('../../assets/gif/walletloading.gif')} style={{alignSelf:'center'}}/>
     </View>
   )
 }

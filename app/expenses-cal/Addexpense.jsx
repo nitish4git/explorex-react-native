@@ -6,6 +6,7 @@ import {
   FlatList,
   Pressable,
   ToastAndroid,
+  Image,
 } from "react-native";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import React, { useEffect, useState } from "react";
@@ -18,6 +19,8 @@ import { Category } from "../../constants/Category";
 import { TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 import { addHistory } from "../../redux/historySlice";
+import axios from "axios";
+import { useSelector } from "react-redux";
 const Addexpense = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -25,6 +28,8 @@ const Addexpense = () => {
   const [inputAmount, setInputAmount] = useState();
   const [reason, setReason] = useState("");
   const [category, setCategory] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const selectedTrip = useSelector((state)=>state.trip.trips)
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -32,13 +37,12 @@ const Addexpense = () => {
       headerTransparent: true,
     });
   });
+  
 
-  let bgColor = "red";
-  if (category) bgColor = "red";
   const handleCategory = (value) => {
     setCategory(value);
   };
-  const handleAddExpense = () => {
+  const handleAddExpense = async () => {
     if (!inputAmount) {
       ToastAndroid.show("Enter Amount", ToastAndroid.LONG);
     } else if (!reason) {
@@ -46,11 +50,24 @@ const Addexpense = () => {
     } else if (category == null) {
       ToastAndroid.show("Select Category", ToastAndroid.LONG);
     } else {
-      dispatch(addHistory({ inputAmount, reason, category }));
-      setInputAmount();
-      setReason();
-      setCategory(null);
-      router.push("/expenses-cal/ExpenseHistory");
+      try {
+        setIsLoading(true);
+        const res = await axios.post("http://192.168.1.3:5000/api/addExpense", {
+          inputAmount: Number(inputAmount),
+          reason,
+          category,
+        });
+        dispatch(addHistory(res.data));
+        setIsLoading(false);
+        setInputAmount();
+        setReason();
+        setCategory(null);
+        ToastAndroid.show("Added", ToastAndroid.LONG);
+        console.log(res.data);
+        router.push("/expenses-cal/ExpenseHistory");
+      } catch (error) {
+        console.log("Something wents wrong", error);
+      }
     }
   };
   return (
@@ -138,9 +155,9 @@ const Addexpense = () => {
           <Text
             style={{
               color: "#F88379",
-      fontFamily: "outfit-bold",
-      fontSize: hp(1.8),
-      paddingLeft:wp(2)
+              fontFamily: "outfit-bold",
+              fontSize: hp(1.8),
+              paddingLeft: wp(2),
             }}
           >
             Select Category
@@ -175,26 +192,33 @@ const Addexpense = () => {
                 justifyContent: "space-between",
               }}
             />
-            <TouchableOpacity
-              style={{
-                backgroundColor: "black",
-                borderRadius: 33,
-                padding: hp(2.5),
-                marginTop: hp(3),
-              }}
-              onPress={handleAddExpense}
-            >
-              <Text
+            {isLoading ? (
+              <Image
+                source={require("../../assets/gif/loading.gif")}
+                style={{ alignSelf: "center" }}
+              />
+            ) : (
+              <TouchableOpacity
                 style={{
-                  fontFamily: "outfit-bold",
-                  fontSize: hp(2),
-                  color: "aliceblue",
-                  textAlign: "center",
+                  backgroundColor: "black",
+                  borderRadius: 33,
+                  padding: hp(2.5),
+                  marginTop: hp(3),
                 }}
+                onPress={handleAddExpense}
               >
-                Add Amount
-              </Text>
-            </TouchableOpacity>
+                <Text
+                  style={{
+                    fontFamily: "outfit-bold",
+                    fontSize: hp(2),
+                    color: "aliceblue",
+                    textAlign: "center",
+                  }}
+                >
+                  Add Amount
+                </Text>
+              </TouchableOpacity>
+            )}
           </View>
         </View>
       </View>
@@ -209,7 +233,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     height: hp(6),
     width: wp(25),
-    marginVertical:hp(0.5),
+    marginVertical: hp(0.5),
     textAlign: "center",
     display: "flex",
     justifyContent: "center",
@@ -220,8 +244,8 @@ const styles = StyleSheet.create({
   },
   categoryCard: {
     // padding: hp(1),
-    paddingHorizontal:wp(3),
-    paddingTop:hp(1)
+    paddingHorizontal: wp(3),
+    paddingTop: hp(1),
   },
   display: {
     backgroundColor: "#E5E4E2",
@@ -244,9 +268,9 @@ const styles = StyleSheet.create({
     padding: hp(1),
   },
   inputLabel: {
-      color: "tomato",
-      fontFamily: "outfit-bold",
-      fontSize: hp(1.8),
+    color: "tomato",
+    fontFamily: "outfit-bold",
+    fontSize: hp(1.8),
   },
   inputData: {
     fontFamily: "outfit-medium",
