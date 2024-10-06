@@ -28,38 +28,10 @@ import { addHistory } from "../../redux/historySlice";
 const RecentTrips = () => {
   const router = useRouter();
   const Trips = useSelector((state) => state.trip.trips);
-  const [recentTrips, setRecentTrips] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [selected , setSelected] = useState('');
   const dispatch = useDispatch();
-  const fetchRecentTrips = async () => {
-    try {
-      setIsLoading(true);
-      const res = await axios.get("http://10.0.2.2:5000/api/getAllTrips");
-      setRecentTrips(res.data);
-      setIsLoading(false);
-    } catch (error) {
-      return console.log("Something is Wrong", error);
-    }
-  };
-  // Calling REST API For getting data from database
-  useEffect(() => {
-    fetchRecentTrips();
-  }, [Trips]);
-
-
   const handleTrip = (value)=>{
-    setSelected(value.place)
-    dispatch(addHistory({selectedTrip:selected}))
    router.push('/expenses-cal/Addexpense')
   }
-  // useEffect(()=>{
-  //   console.log(selected)
-  // },[selected])
-
-
-
-
 
   return (
     <View>
@@ -104,15 +76,9 @@ const RecentTrips = () => {
               />
             </View>
           </View>
-          {isLoading ? (
-            <Image
-              source={require("../../assets/gif/loading.gif")}
-              style={styles.loadingGif}
-            />
-          ) : (
             <View style={styles.card}>
               <FlatList
-                data={recentTrips}
+                data={[]}
                 renderItem={({item}) => {
                   return (
                     <Pressable
@@ -174,11 +140,9 @@ const RecentTrips = () => {
                 ListEmptyComponent={<EmptyList />}
                 keyExtractor={(item) => item._id}
                 showsVerticalScrollIndicator={false}
-                style={{ marginBottom: hp(12) }}
-                
+                style={{ marginBottom: hp(12) }}                
               />
-            </View>
-          )}
+            </View>         
         </View>
       </View>
     </View>

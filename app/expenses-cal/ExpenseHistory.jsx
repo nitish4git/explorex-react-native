@@ -19,9 +19,6 @@ const ExpenseHistory = () => {
   const curYear = date.getFullYear();
   const [totalAmount, setTotalAmount] = useState(0);
   const [expenses , setExpenses] = useState([]);
-  useEffect(()=>{
-    console.log(historyDetails[historyDetails.length - 1])
-  },[historyDetails])
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -29,18 +26,6 @@ const ExpenseHistory = () => {
       headerTransparent: true,
     });
   });
-  const fetchAllExpense = async ()=>{
-    try {
-      const res = await axios.get("http://192.168.1.3:5000/api/getAllExpenses");
-      setExpenses(res.data)
-      console.log(res.data)
-    } catch (error) {
-      console.log("something wents wrong", error)
-    }
-  }
-  useEffect(()=>{
-    fetchAllExpense();
-  },[])
   return (
     <LinearGradient
       colors={["#ff0000", "#2b1637"]}

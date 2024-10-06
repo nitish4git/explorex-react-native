@@ -7,6 +7,8 @@ import {
   ToastAndroid,
   TouchableOpacity,
   View,
+  ScrollView,
+  KeyboardAvoidingView
 } from "react-native";
 import React, { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -17,6 +19,7 @@ import {
 } from "react-native-responsive-screen";
 import { LinearGradient } from "expo-linear-gradient";
 import axios from "axios";
+import Toastmessage from "../Toast/Toastmessage";
 
 const Login = () => {
   const router = useRouter();
@@ -36,8 +39,12 @@ const Login = () => {
           // console.log(res.data)
           if(res.data.status === "ok"){
             Alert.alert("Login successfull");
-            AsyncStorage.setItem("token",res.data.data)
+            AsyncStorage.setItem("token",res.data.data);
+            AsyncStorage.setItem("isLoggedIn" , JSON.stringify(true))
             router.navigate('(tabs)/MyTrip')
+            setEmail("");
+            setPassword("");
+            
           }else if(res.data.oldUser == null){
             Alert.alert("Invalid email or password")
           }
@@ -89,6 +96,7 @@ const Login = () => {
               placeholder="Enter email"
               style={{ fontSize: hp(2), fontFamily: "outfit" }}
               onChangeText={(value) => setEmail(value)}
+              value={email}
             />
           </View>
           <View style={styles.inputField}>
@@ -106,6 +114,7 @@ const Login = () => {
               secureTextEntry
               style={{ fontSize: hp(2), fontFamily: "outfit" }}
               onChangeText={(value) => setPassword(value)}
+              value={password}
             />
           </View>
           <TouchableOpacity style={styles.button} onPress={() => handleLogin()}>
@@ -147,6 +156,7 @@ const Login = () => {
           </Pressable>
         </View>
       </View>
+
     </>
   );
 };

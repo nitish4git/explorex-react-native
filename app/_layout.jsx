@@ -7,6 +7,8 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import store from "../redux/store";
 import { Provider } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const layout = () => {
   const [loaded, error] = useFonts({
     "outfit-bold": require("../assets/fonts/Outfit-Bold.ttf"),
@@ -19,18 +21,29 @@ const layout = () => {
       SplashScreen.hideAsync();
     }
   }, [loaded, error]);
-
-  const [tripData, setTripData] = useState([]);
+   [tripData, setTripData] = useState([]);
+const [isLogin , setIslogin] = useState(false);
+const checkLogin = async ()=>{
+  const data = await AsyncStorage.getItem("isLoggedIn");
+  setIslogin(data)
+  console.log(data)
+}
+useEffect(()=>{
+  checkLogin();
+},[])
   return (
-    <Provider store={store}>
+      <Provider store={store}>
       <CreateTripContext.Provider value={{ tripData, setTripData }}>
         <Stack screenOptions={{ headerShown: false }}>
-          {/* <Stack.Screen name='index' options={{headerShown:false}}/> */}
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          {
+            isLogin ? 
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> : 
+          <Stack.Screen name='index' options={{headerShown:false}}/>
+          }
         </Stack>
       </CreateTripContext.Provider>
     </Provider>
-  );
+    )
 };
 
 export default layout;
